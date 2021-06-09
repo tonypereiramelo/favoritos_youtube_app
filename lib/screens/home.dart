@@ -5,6 +5,33 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Container(
+          height: 25,
+          child: Image.asset("images/yt_logo_rgb_dark.png"),
+        ),
+        elevation: 0,
+        backgroundColor: Colors.black87,
+        actions: <Widget>[
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              "0",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.star),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.search),
+          ),
+        ],
+      ),
+      body: Container(),
+    );
   }
 }
