@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class DataSearch extends SearchDelegate<String?> {
+class DataSearch extends SearchDelegate<String> {
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -17,9 +17,10 @@ class DataSearch extends SearchDelegate<String?> {
 
   @override
   Widget buildLeading(BuildContext context) {
+    String? s;
     return IconButton(
         onPressed: () {
-          close(context, null);
+          close(context, s!);
         },
         icon: AnimatedIcon(
             icon: AnimatedIcons.menu_arrow, progress: transitionAnimation));
