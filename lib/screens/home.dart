@@ -46,7 +46,7 @@ class Home extends StatelessWidget {
             if (snapshot.hasData) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  return VideoTile(snapshot.data!["index"]);
+                  return VideoTile(snapshot.data![index]);
                 },
                 itemCount: snapshot.data!.length,
               );
