@@ -48,10 +48,9 @@ class Home extends StatelessWidget {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   if (index < snapshot.data!.length) {
-                    bloc.nextPageController = true;
                     return VideoTile(snapshot.data![index]);
                   } else {
-                    bloc.nextPageController = false;
+                    bloc.inSearch.add("");
                     return Container(
                       height: 40,
                       width: 40,
