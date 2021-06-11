@@ -27,11 +27,17 @@ class VideoTile extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
-                    child: Text(video.title.toString()),
+                    child: Text(
+                      video.title.toString(),
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.all(8),
-                    child: Text(video.channel.toString()),
+                    child: Text(
+                      video.channel.toString(),
+                      style: TextStyle(fontSize: 16, color: Colors.blueAccent),
+                    ),
                   ),
                 ],
               ))
