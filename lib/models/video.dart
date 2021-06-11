@@ -3,15 +3,16 @@ class Video {
   final String? title;
   final String? thumb;
   final String? channel;
+  String? nPage;
 
-  Video({this.id, this.title, this.thumb, this.channel});
+  Video({this.id, this.title, this.thumb, this.channel, this.nPage});
 
   factory Video.fromJson(Map<String, dynamic> json) {
     return Video(
-      id: json["id"]["videoId"],
-      title: json["snippet"]["title"],
-      thumb: json["snippet"]["thumbnails"]["high"]["url"],
-      channel: json["snippet"]["channelTitle"],
-    );
+        id: json["id"]["videoId"],
+        title: json["snippet"]["title"],
+        thumb: json["snippet"]["thumbnails"]["high"]["url"],
+        channel: json["snippet"]["channelTitle"],
+        nPage: json["nextPageToken"]);
   }
 }

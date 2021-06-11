@@ -51,7 +51,7 @@ class Home extends StatelessWidget {
                     bloc.nextPageController = true;
                     return VideoTile(snapshot.data![index]);
                   } else {
-                    bloc.inSearch.add(bloc.nextPageController = false);
+                    bloc.nextPageController = false;
                     return Container(
                       height: 40,
                       width: 40,
