@@ -43,13 +43,14 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.black87,
         body: StreamBuilder(
           stream: bloc.outVideos,
+          initialData: [],
           builder: (context, dynamic snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   if (index < snapshot.data!.length) {
                     return VideoTile(snapshot.data![index]);
-                  } else {
+                  } else if (index > 1) {
                     bloc.inSearch.add("");
                     return Container(
                       height: 40,
@@ -59,6 +60,8 @@ class Home extends StatelessWidget {
                         valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
                       ),
                     );
+                  } else {
+                    return Container();
                   }
                 },
                 itemCount: snapshot.data!.length + 1,
