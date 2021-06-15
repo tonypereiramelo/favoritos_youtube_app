@@ -51,7 +51,7 @@ class Home extends StatelessWidget {
                   if (index < snapshot.data!.length) {
                     return VideoTile(snapshot.data![index]);
                   } else if (index > 1) {
-                    bloc.inSearch.add("");
+                    bloc.inSearch.add(null);
                     return Container(
                       height: 40,
                       width: 40,

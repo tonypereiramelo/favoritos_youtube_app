@@ -12,24 +12,25 @@ class VideosBloc implements BlocBase {
   final _videosController = StreamController<List<Video>>();
   Stream get outVideos => _videosController.stream;
 
-  final _searchController = StreamController<String>();
+  final _searchController = StreamController<String?>();
   Sink get inSearch => _searchController.sink;
 
-  final _nextPageController = StreamController<String>();
-  Sink get nPage => _nextPageController.sink;
+  //final _nextPageController = StreamController<String>();
+  //Sink get nPage => _nextPageController.sink;
 
   VideosBloc() {
     api = Api();
     _searchController.stream.listen(_search);
-    _nextPageController.stream.listen(_search);
+    //_nextPageController.stream.listen(_search);
   }
 
-  void _search(String search) async {
-    if (inSearch != nPage) {
+  void _search(String? search) async {
+    dynamic nPage = api!.nextPage();
+    if (search != null) {
       _videosController.sink.add([]);
       videos = await api!.search(search);
     } else {
-      videos = (videos! + await api!.nextPage());
+      videos = (videos! + await nPage);
     }
 
     _videosController.sink.add(videos!);
@@ -42,7 +43,7 @@ class VideosBloc implements BlocBase {
   void dispose() {
     _videosController.close();
     _searchController.close();
-    _nextPageController.close();
+    //_nextPageController.close();
   }
 
   @override
