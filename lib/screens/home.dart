@@ -1,6 +1,8 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:favoritos_youtube_app/blocs/favorite_bloc.dart';
 import 'package:favoritos_youtube_app/blocs/videos_bloc.dart';
 import 'package:favoritos_youtube_app/delegates/data_search.dart';
+import 'package:favoritos_youtube_app/models/video.dart';
 import 'package:favoritos_youtube_app/widget/video_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -20,12 +22,17 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.black87,
         actions: <Widget>[
           Align(
-            alignment: Alignment.center,
-            child: Text(
-              "0",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-            ),
-          ),
+              alignment: Alignment.center,
+              child: StreamBuilder<Map<String, Video>>(
+                stream: BlocProvider.getBloc<FavoriteBloc>().outFav,
+                initialData: {},
+                builder: (context, snapshot) {
+                  if (snapshot.hasData)
+                    return Text("${snapshot.data!.length}");
+                  else
+                    return Container();
+                },
+              )),
           IconButton(
             onPressed: () {},
             icon: Icon(Icons.star),
