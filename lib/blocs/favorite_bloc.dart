@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:ui';
-
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:favoritos_youtube_app/models/video.dart';
 
