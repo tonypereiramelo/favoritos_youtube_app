@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         ],
         child: BlocProvider(
           blocs: [Bloc((e) => FavoriteBloc())],
-          dependencies: [],
+          dependencies: [Dependency((e) => FavoriteBloc())],
           child: MaterialApp(
             title: 'FlutterTube',
             debugShowCheckedModeBanner: false,
