@@ -3,7 +3,7 @@ class Video {
   final String? title;
   final String? thumb;
   final String? channel;
-  String? nPage;
+  final String? nPage;
 
   Video({this.id, this.title, this.thumb, this.channel, this.nPage});
 

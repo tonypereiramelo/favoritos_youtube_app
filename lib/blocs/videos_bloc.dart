@@ -6,7 +6,6 @@ import 'package:favoritos_youtube_app/models/video.dart';
 
 class VideosBloc implements BlocBase {
   Api? api;
-
   List<Video>? videos;
 
   final _videosController = StreamController<List<Video>>();
@@ -25,12 +24,11 @@ class VideosBloc implements BlocBase {
   }
 
   void _search(String? search) async {
-    dynamic nPage = api!.nextPage();
     if (search != null) {
       _videosController.sink.add([]);
       videos = await api!.search(search);
     } else {
-      videos = (videos! + await nPage);
+      videos = (videos! + await api!.nextPage());
     }
 
     _videosController.sink.add(videos!);
