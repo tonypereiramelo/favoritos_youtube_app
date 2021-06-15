@@ -7,7 +7,7 @@ import 'package:favoritos_youtube_app/models/video.dart';
 class FavoriteBloc implements BlocBase {
   Map<String, Video> _favorites = {};
 
-  final _favController = StreamController<Map<String, Video>>();
+  final _favController = StreamController<Map<String, Video>>.broadcast();
   Stream<Map<String, Video>> get outFav => _favController.stream;
 
   void toggleFavorites(Video video) {
