@@ -13,19 +13,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         blocs: [
-          Bloc((i) => VideosBloc()),
+          Bloc((_) => VideosBloc()),
+          Bloc((_) => FavoriteBloc()),
         ],
         dependencies: [
-          Dependency((i) => VideosBloc())
+          Dependency((_) => VideosBloc()),
+          Dependency((_) => FavoriteBloc()),
         ],
-        child: BlocProvider(
-          blocs: [Bloc((e) => FavoriteBloc())],
-          dependencies: [Dependency((e) => FavoriteBloc())],
-          child: MaterialApp(
-            title: 'FlutterTube',
-            debugShowCheckedModeBanner: false,
-            home: Home(),
-          ),
+        child: MaterialApp(
+          title: 'FlutterTube',
+          debugShowCheckedModeBanner: false,
+          home: Home(),
         ));
   }
 }

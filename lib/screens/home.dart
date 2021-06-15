@@ -11,65 +11,66 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = BlocProvider.getBloc<VideosBloc>();
     return Scaffold(
-        appBar: AppBar(
-          title: Container(
-            height: 25,
-            child: Image.asset("images/yt_logo_rgb_dark.png"),
-          ),
-          elevation: 0,
-          backgroundColor: Colors.black87,
-          actions: <Widget>[
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                "0",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.star),
-            ),
-            IconButton(
-              onPressed: () async {
-                String? result =
-                    await showSearch(context: context, delegate: DataSearch());
-                if (result != null) bloc.inSearch.add(result);
-              },
-              icon: Icon(Icons.search),
-            ),
-          ],
+      appBar: AppBar(
+        title: Container(
+          height: 25,
+          child: Image.asset("images/yt_logo_rgb_dark.png"),
         ),
+        elevation: 0,
         backgroundColor: Colors.black87,
-        body: StreamBuilder(
-          stream: bloc.outVideos,
-          initialData: [],
-          builder: (context, dynamic snapshot) {
-            if (snapshot.hasData) {
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  if (index < snapshot.data!.length) {
-                    return VideoTile(snapshot.data![index]);
-                  } else if (index > 1) {
-                    bloc.inSearch.add(null);
-                    return Container(
-                      height: 40,
-                      width: 40,
-                      alignment: Alignment.center,
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
-                      ),
-                    );
-                  } else {
-                    return Container();
-                  }
-                },
-                itemCount: snapshot.data!.length + 1,
-              );
-            } else {
-              return Container();
-            }
-          },
-        ));
+        actions: <Widget>[
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              "0",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.star),
+          ),
+          IconButton(
+            onPressed: () async {
+              String? result =
+                  await showSearch(context: context, delegate: DataSearch());
+              if (result != null) bloc.inSearch.add(result);
+            },
+            icon: Icon(Icons.search),
+          ),
+        ],
+      ),
+      backgroundColor: Colors.black87,
+      body: StreamBuilder(
+        stream: bloc.outVideos,
+        initialData: [],
+        builder: (context, dynamic snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                if (index < snapshot.data!.length) {
+                  return VideoTile(snapshot.data![index]);
+                } else if (index > 1) {
+                  bloc.inSearch.add(null);
+                  return Container(
+                    height: 40,
+                    width: 40,
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+                    ),
+                  );
+                } else {
+                  return Container();
+                }
+              },
+              itemCount: snapshot.data!.length + 1,
+            );
+          } else {
+            return Container();
+          }
+        },
+      ),
+    );
   }
 }
