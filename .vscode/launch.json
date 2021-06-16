@@ -5,6 +5,7 @@
     "version": "0.2.0",
     "configurations": [
     
+    
         {
             "name": "favoritos_youtube_app",
             "request": "launch",
