@@ -3,6 +3,7 @@ import 'package:favoritos_youtube_app/blocs/favorite_bloc.dart';
 import 'package:favoritos_youtube_app/blocs/videos_bloc.dart';
 import 'package:favoritos_youtube_app/delegates/data_search.dart';
 import 'package:favoritos_youtube_app/models/video.dart';
+import 'package:favoritos_youtube_app/screens/favorites.dart';
 import 'package:favoritos_youtube_app/widget/video_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,10 @@ class Home extends StatelessWidget {
                 },
               )),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Favorites()));
+            },
             icon: Icon(Icons.star),
           ),
           IconButton(
