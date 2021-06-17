@@ -11,13 +11,13 @@ class YoutubePalyer extends StatefulWidget {
 
 class _YoutubePalyerState extends State<YoutubePalyer> {
   late YoutubePlayerController _controller;
+  final Video video = Video();
 
   @override
   void initState() {
     super.initState();
 
-    _controller =
-        YoutubePlayerController(initialVideoId: Video().id.toString());
+    _controller = YoutubePlayerController(initialVideoId: video.id.toString());
   }
 
   @override
@@ -26,7 +26,7 @@ class _YoutubePalyerState extends State<YoutubePalyer> {
         controller: _controller,
         child: Scaffold(
           appBar: AppBar(
-            title: Text(Video().title.toString()),
+            title: Text(video.title.toString()),
             centerTitle: true,
           ),
           body: Container(
