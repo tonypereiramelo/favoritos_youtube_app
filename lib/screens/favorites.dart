@@ -5,7 +5,8 @@ import 'package:favoritos_youtube_app/models/video.dart';
 import 'package:flutter/material.dart';
 
 class Favorites extends StatelessWidget {
-  const Favorites({Key? key}) : super(key: key);
+  final Video? video;
+  Favorites({this.video});
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +27,10 @@ class Favorites extends StatelessWidget {
             children: snapshot.data!.values.map((v) {
               return InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => YoutubePalyer()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => YoutubePalyer(
+                            video: video,
+                          )));
                 },
                 onLongPress: () {
                   bloc.toggleFavorites(v);

@@ -13,8 +13,11 @@ class VideoTile extends StatelessWidget {
     final blocFav = BlocProvider.getBloc<FavoriteBloc>();
     return GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => YoutubePalyer()));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => YoutubePalyer(
+                  video: video,
+                )));
+        print(video.id);
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 4),
