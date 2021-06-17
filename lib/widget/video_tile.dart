@@ -1,9 +1,8 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:favoritos_youtube_app/blocs/favorite_bloc.dart';
-import 'package:favoritos_youtube_app/blocs/youtube_bloc.dart';
+import 'package:favoritos_youtube_app/delegates/youtube_player.dart';
 import 'package:favoritos_youtube_app/models/video.dart';
 import 'package:flutter/material.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class VideoTile extends StatelessWidget {
   final Video video;
@@ -12,21 +11,10 @@ class VideoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final blocFav = BlocProvider.getBloc<FavoriteBloc>();
-    final blocYouTube = BlocProvider.getBloc<YouTubeBloc>();
     return GestureDetector(
       onTap: () {
-        StreamBuilder(
-            stream: blocYouTube.outYouTube,
-            initialData: {},
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return YoutubePlayerIFrame(
-                  controller: blocYouTube.video,
-                  aspectRatio: 19 / 9,
-                );
-              } else
-                return CircularProgressIndicator();
-            });
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => YoutubePalyer()));
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 4),
