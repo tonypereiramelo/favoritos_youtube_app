@@ -5,9 +5,6 @@ import 'package:favoritos_youtube_app/models/video.dart';
 import 'package:flutter/material.dart';
 
 class Favorites extends StatelessWidget {
-  final Video? video;
-  Favorites({this.video});
-
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.getBloc<FavoriteBloc>();
@@ -29,7 +26,7 @@ class Favorites extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => YoutubePalyer(
-                            video: video,
+                            video: v,
                           )));
                 },
                 onLongPress: () {
